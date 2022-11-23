@@ -1,4 +1,7 @@
 //global variable to activate socket on client side.
+let myColor;
+let colors = ["red", "green", "blue", "yellow", "brown"];
+
 let clientSocket = io();
 clientSocket.on("connect", newConnection);
 
@@ -10,15 +13,16 @@ clientSocket.on("mousebroadcast", otherMouse)
 
 function otherMouse(dataReceived) {
   noStroke();
-  fill("blue");
-  circle(dataReceived.x, dataReceived.y, 7);
+  fill(dataReceived.color);
+  circle(dataReceived.x, dataReceived.y, 20);
 }
 
 function mouseMoved() {
   let message = {
     x: mouseX,
     y: mouseY,
-    id: clientSocket.id
+    id: clientSocket.id,
+    color: myColor,
   };
 //first parameter is the kind of data sent
   clientSocket.emit ("mouse", message );
@@ -26,13 +30,14 @@ function mouseMoved() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-   background(220);
+  //background(220);
+  myColor = random(colors);
 }
 
 function draw() {
   noStroke();
-  fill("red");
-  circle(mouseX, mouseY, 7);
+  fill(myColor);
+  circle(mouseX, mouseY, 20);
 }
 
 //to use socket on client server i have to upload the library on the client side. Watch INDEX.HTML
