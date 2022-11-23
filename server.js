@@ -13,4 +13,16 @@ let server = app.listen(port);
 
 console.log("running server on http://localhost:" + port);
 
+//use socketz
+let serverSocket = require("socket.io");
+
+let io = serverSocket(server);
+
+//specifico l'evento e la funzione da richiamare
+io.on("connection", newConnection);
+
+function newConnection(newSocket){
+    console.log(newSocket.id);
+}
+
 app.use(express.static("public"));
