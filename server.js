@@ -23,6 +23,14 @@ io.on("connection", newConnection);
 
 function newConnection(newSocket){
     console.log(newSocket.id);
+//when u get the message called mouse form the mouse do something
+    newSocket.on("mouse", mouseReceived);
+
+    function mouseReceived(dataReceived) {
+        console.log(dataReceived);
+        //take the variable contain the new connection
+        newSocket.broadcast.emit("mousebroadcast", dataReceived);
+    }
 }
 
 app.use(express.static("public"));
