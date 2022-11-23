@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Gubiolo/NodeTest/issues"
   },
-  "homepage": "https://github.com/Gubiolo/NodeTest#readme"
+  "homepage": "https://github.com/Gubiolo/NodeTest#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
